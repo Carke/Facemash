@@ -32,47 +32,38 @@ while state == 0:
         if event.type == MOUSEMOTION:
             x1=event.pos[0] 
             y1=event.pos[1]
-    SettingsButton = pygame.Rect(55,430, 280,70)
-    PlayButton = pygame.Rect(100,225,260,140)
-    InstructionsButton = pygame.Rect(375,225,260,140)
-    AboutButton = pygame.Rect(350,430,280,70)
     MainMenu.blit(Logo.image, Logo)
-    MainMenu.blit(InstructionsButtoninitial.image, InstructionsButtoninitial)
-    MainMenu.blit(PlayButtoninitial.image, PlayButtoninitial)
-    MainMenu.blit(SettingButtoninitial.image,SettingButtoninitial) 
-    MainMenu.blit(AboutButtoninitial.image, AboutButtoninitial)
+    MainMenu.blit(InstructionsButton.image, InstructionsButton)
+    MainMenu.blit(PlayButton.image, PlayButton)
+    MainMenu.blit(SettingButton.image,SettingButton) 
+    MainMenu.blit(AboutButton.image, AboutButton)
     MainMenu.blit(BackButtonText,(50,520))
-    
     #Code for Settings Button Mouseover
-    if SettingsButton.collidepoint((x1,y1)):
-        MainMenu.blit(SettingButtonHover.image,SettingButtonHover)  
+    if SettingButton.Rect.collidepoint((x1,y1)):
+        MainMenu.blit(SettingButton.hover,SettingButton)  
         if event.type == MOUSEBUTTONDOWN :
             SettingsWindow()
-        if event.type == KEYDOWN and event.key == K_ESCAPE:
-            state = 1
+        Quit()
 
 #code for controlling About Button Mouseover
-    elif AboutButton.collidepoint((x1,y1)):
-        MainMenu.blit(AboutButtonHover.image,AboutButtonHover)
+    elif AboutButton.Rect.collidepoint((x1,y1)):
+        MainMenu.blit(AboutButton.hover,AboutButton)
         if event.type == MOUSEBUTTONUP: #code for About Menu
             AboutWindow()
-        if event.type == KEYDOWN and event.key == K_ESCAPE:
-            state = 1
+        Quit()
             
 # Code for Play Button Mouseover
-    elif PlayButton.collidepoint((x1,y1)):
-            MainMenu.blit(PlayButtonHover.image,PlayButtonHover)
-            if event.type ==  MOUSEBUTTONUP:
-                main.main()
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
-                state = 1
+    elif PlayButton.Rect.collidepoint((x1,y1)):
+        MainMenu.blit(PlayButton.hover,PlayButton)
+        if event.type ==  MOUSEBUTTONUP:
+            main.main()
+        Quit()
 #Code for Instruction Button Mouseover
-    elif InstructionsButton.collidepoint((x1,y1)):
-            MainMenu.blit(InstructionsButtonHover.image, InstructionsButtonHover)
-            if event.type == MOUSEBUTTONUP:
-                InstructionsWindow() 
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
-                state = 1           
+    elif InstructionsButton.Rect.collidepoint((x1,y1)):
+        MainMenu.blit(InstructionsButton.hover, InstructionsButton)
+        if event.type == MOUSEBUTTONUP:
+            InstructionsWindow() 
+        Quit()         
 
     pygame.display.update()
     for event in pygame.event.get():

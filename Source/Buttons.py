@@ -1,34 +1,50 @@
 import pygame
+from pygame.locals import *
 pygame.init()
 MainMenu = pygame.display.set_mode([700,700])
 AboutMenu = pygame.display.set_mode([500,500])
 InstructionsMenu = pygame.display.set_mode([500,500])
 SettingsMenu = pygame.display.set_mode([500,500])
+for event in pygame.event.get():
+        if event.type == MOUSEMOTION:
+            x1=event.pos[0] 
+            y1=event.pos[1]
 #v = raw_input("Filename: ")
-
+state = 0
+def Quit():
+    if event.type == KEYDOWN and event.key == K_ESCAPE:
+        state = 1
+            
 class Buttons(pygame.sprite.Sprite):
-    def __init__(self, filename, location, surface):
+    def __init__(self, location, initial, hover):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load(filename).convert_alpha()
+        self.image = pygame.image.load(initial).convert_alpha()
+        self.hover = pygame.image.load(hover).convert_alpha()
+        self.Rect = pygame.Rect((location))
 
         self.rect = self.image.get_rect()
         self.rect.x=location[0]
         self.rect.y=location[1]
-        surface.blit(self.image,self)
+        pygame.display.get_surface().blit(self.image,self)
 class Buttons2(pygame.sprite.Sprite):
-    def __init__(self, filename, location, surface):
+    def __init__(self, location, initial, hover):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load(filename).convert_alpha()
+        self.image = pygame.image.load(initial).convert_alpha()
         self.image = pygame.transform.scale(self.image, (104,56))
+        self.hover = pygame.image.load(hover).convert_alpha()
+        self.hover = pygame.transform.scale(self.hover, (104,56))
+        self.Rect = pygame.Rect((location))
+
 
         self.rect = self.image.get_rect()
         self.rect.x=location[0]
         self.rect.y=location[1]
-        surface.blit(self.image,self)
+        pygame.display.get_surface().blit(self.image,self)
+        
 class Buttons3(pygame.sprite.Sprite):
-    def __init__(self, filename, location, surface):
+    def __init__(self, filename, location, ):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(filename).convert_alpha()
         self.image = pygame.transform.scale(self.image, (511,141))
@@ -36,24 +52,17 @@ class Buttons3(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x=location[0]
         self.rect.y=location[1]
-        InstructionsMenu.blit(self.image,self)
+        pygame.display.get_surface().blit(self.image,self)
         
-AboutButtoninitial = Buttons("images/about_normal.png", (350,430), MainMenu)
-PlayButtoninitial = Buttons("images/play_normal.png", (80,225), MainMenu)
-InstructionsButtoninitial = Buttons("images/learn_normal.png", (350,225), MainMenu)
-SettingButtoninitial = Buttons("images/settings_normal.png", (55,430), MainMenu)
-Logo = Buttons("images/logo_normal.png", (50,25), MainMenu)
-AboutButtonHover = Buttons("images/about_hover.png", (350,430), MainMenu)
-PlayButtonHover = Buttons("images/play_hover.png", (80,225), MainMenu)
-InstructionsButtonHover = Buttons("images/learn_hover.png", (350,225), MainMenu)
-SettingButtonHover = Buttons("images/settings_hover.png", (55,430), MainMenu)
-LogoHover = Buttons("images/logo_hover.png", (50,25), MainMenu)
-AboutTitleText = Buttons("images/AboutTitle_normal.png", (110,0), AboutMenu)
-InstructionsTitleText = Buttons3("images/InstructionsTitle_normal.png", (0,0), InstructionsMenu)
-TitleText = Buttons("images/SettingsTitle_normal.png", (100,0), SettingsMenu)
-AudioText = Buttons("images/audio_normal.png", (25,140), SettingsMenu)
-AudioON = Buttons2("images/ON_normal.png", (240,150), SettingsMenu)
-AudioSETON = Buttons2("images/ON_hover.png", (240,150), SettingsMenu)
-AudioOFF = Buttons2("images/OFF_normal.png", (350,150), SettingsMenu)
-AudioSETOFF = Buttons2("images/OFF_hover.png", (350,150), SettingsMenu)
-#Image1 = Buttons(v,(300,100),SettingsMenu)
+AboutButton = Buttons((350,430,280,70), "images/about_normal.png", "images/about_hover.png")
+PlayButton = Buttons((100,225,260,140),"images/play_normal.png", "images/play_hover.png")
+InstructionsButton = Buttons((375,225,260,140),"images/learn_normal.png", "images/learn_hover.png")
+SettingButton = Buttons((55,430, 280,70),"images/settings_normal.png", "images/settings_hover.png")
+Logo = Buttons((50,25,0,0),"images/logo_normal.png", "images/logo_hover.png")
+AboutTitleText = Buttons((110,0,0,0),"images/AboutTitle_normal.png", "images/AboutTitle_normal.png")
+InstructionsTitleText = Buttons3("images/InstructionsTitle_normal.png",(0,0),)
+TitleText = Buttons((100,0,0,0),"images/SettingsTitle_normal.png", "images/SettingsTitle_normal.png")
+AudioText = Buttons((25,140,0,0),"images/audio_normal.png", "images/audio_normal.png")
+AudioON = Buttons2((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
+AudioOFF = Buttons2((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
+#Image1 = Buttons(("C:/Users/Carke ",v,),(300,100),SettingsMenu)

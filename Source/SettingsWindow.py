@@ -12,11 +12,9 @@ MusicVolume = 1
 
 def SettingsWindow():
     pygame.display.quit()
-    setting = 0
+    state = 0
     global MusicVolume
-    while setting == 0:
-        AudioONButton = pygame.Rect(240,150,104,56)
-        AudioOFFButton = pygame.Rect(350,150,104,56)
+    while state == 0:
         SettingsMenu = pygame.display.set_mode([500,500])
         SettingsMenu.fill([111,159,225])
         pygame.display.set_caption("Settings")
@@ -31,27 +29,27 @@ def SettingsWindow():
         SettingsMenu.blit(AudioON.image, AudioON)
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
         #SettingsMenu.blit(Image1.image, Image1)
-        if AudioONButton.collidepoint((x1,y1)):
-            SettingsMenu.blit(AudioSETON.image, AudioSETON)
+        if AudioON.Rect.collidepoint((x1,y1)):
+            SettingsMenu.blit(AudioON.hover, AudioON)
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
                 MusicVolume = 1
         if MusicVolume == 1: 
-            SettingsMenu.blit(AudioSETON.image, AudioSETON)
-        if AudioOFFButton.collidepoint((x1,y1)):
-            SettingsMenu.blit(AudioSETOFF.image, AudioSETOFF)
+            SettingsMenu.blit(AudioON.hover, AudioON)
+        if AudioOFF.Rect.collidepoint((x1,y1)):
+            SettingsMenu.blit(AudioOFF.hover, AudioOFF)
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(0.0)
                 MusicVolume = 0
         if MusicVolume == 0: 
-            SettingsMenu.blit(AudioSETOFF.image, AudioSETOFF)
+            SettingsMenu.blit(AudioOFF.hover, AudioOFF)
         for event in pygame.event.get():
             if event.type == KEYDOWN and event.key == K_ESCAPE:
-                setting = 1
+                state = 1
         pygame.event.clear()
             
             
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == KEYDOWN and event.key == K_ESCAPE:
-                setting = 1
+                state = 1

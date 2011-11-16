@@ -120,7 +120,7 @@ if __name__ == '__main__':
 	while True:
 		expression.choose()
 		is_correct = False
-		lobster = pygame.font.match_font('Lobster 1.4,')
+		lobster = pygame.font.match_font('lobster1.4')
 		font = pygame.font.Font(lobster, 36)
 		text = font.render(expression.expression + " on the " + expression.side, 1, (255,255,255))
 		textpos = text.get_rect()

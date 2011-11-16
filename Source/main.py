@@ -25,15 +25,14 @@ class Game():
 				sys.exit()
 
 def main():
-	setting = 0
 	pygame.init()
 	screen = pygame.display.set_mode((640,480))
 	image = Camera()
 	expression = Expression()
-	while setting == 0:
+	while True:
 		expression.choose()
 		is_correct = False
-		lobster = pygame.font.match_font('Lobster 1.4,')
+		lobster = pygame.font.match_font('lobster1.4')
 		font = pygame.font.Font(lobster, 36)
 		text = font.render(expression.expression + " on the " + expression.side, 1, (255,255,255))
 		textpos = text.get_rect()
@@ -45,8 +44,8 @@ def main():
 			pygame.display.flip()
 		event = pygame.event.poll()
 		pygame.display.flip()
-		if event.type == KEYDOWN and event.key == K_ESCAPE:
-			setting = 1
+		if False:
+			break
 
 
 # Run the main program now.			
