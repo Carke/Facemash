@@ -29,15 +29,13 @@ def SettingsWindow():
         SettingsMenu.blit(AudioON.image, AudioON)
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
         #SettingsMenu.blit(Image1.image, Image1)
-        if AudioON.Rect.collidepoint((x1,y1)):
-            SettingsMenu.blit(AudioON.hover, AudioON)
+        if Buttons2.Collision((AudioON)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
                 MusicVolume = 1
         if MusicVolume == 1: 
             SettingsMenu.blit(AudioON.hover, AudioON)
-        if AudioOFF.Rect.collidepoint((x1,y1)):
-            SettingsMenu.blit(AudioOFF.hover, AudioOFF)
+        if Buttons2.Collision((AudioOFF)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(0.0)
                 MusicVolume = 0

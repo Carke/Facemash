@@ -28,10 +28,7 @@ while state == 0:
     pygame.display.set_caption("Main Menu")
     event = pygame.event.poll()
     MainMenu.fill([111,159,225])
-    for event in pygame.event.get():
-        if event.type == MOUSEMOTION:
-            x1=event.pos[0] 
-            y1=event.pos[1]
+    MouseOver()
     MainMenu.blit(Logo.image, Logo)
     MainMenu.blit(InstructionsButton.image, InstructionsButton)
     MainMenu.blit(PlayButton.image, PlayButton)
@@ -39,31 +36,23 @@ while state == 0:
     MainMenu.blit(AboutButton.image, AboutButton)
     MainMenu.blit(BackButtonText,(50,520))
     #Code for Settings Button Mouseover
-    if SettingButton.Rect.collidepoint((x1,y1)):
-        MainMenu.blit(SettingButton.hover,SettingButton)  
+    if Buttons.Collision((SettingButton)):
         if event.type == MOUSEBUTTONDOWN :
             SettingsWindow()
-        Quit()
 
 #code for controlling About Button Mouseover
-    elif AboutButton.Rect.collidepoint((x1,y1)):
-        MainMenu.blit(AboutButton.hover,AboutButton)
-        if event.type == MOUSEBUTTONUP: #code for About Menu
+    if Buttons.Collision(AboutButton): #code for About Menu
+        if event.type == MOUSEBUTTONUP:
             AboutWindow()
-        Quit()
-            
+                
 # Code for Play Button Mouseover
-    elif PlayButton.Rect.collidepoint((x1,y1)):
-        MainMenu.blit(PlayButton.hover,PlayButton)
+    if Buttons.Collision((PlayButton)):
         if event.type ==  MOUSEBUTTONUP:
             main.main()
-        Quit()
 #Code for Instruction Button Mouseover
-    elif InstructionsButton.Rect.collidepoint((x1,y1)):
-        MainMenu.blit(InstructionsButton.hover, InstructionsButton)
+    if Buttons.Collision((InstructionsButton)):
         if event.type == MOUSEBUTTONUP:
-            InstructionsWindow() 
-        Quit()         
+            InstructionsWindow()         
 
     pygame.display.update()
     for event in pygame.event.get():

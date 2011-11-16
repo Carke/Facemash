@@ -8,6 +8,7 @@ from pygame.locals import *
 from Buttons import *
 
 def AboutWindow():
+    pygame.event.clear()
     pygame.display.quit()
     setting = 0
     while setting == 0:
