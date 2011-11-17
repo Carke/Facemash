@@ -36,24 +36,23 @@ while state == 0:
     MainMenu.blit(AboutButton.image, AboutButton)
     MainMenu.blit(BackButtonText,(50,520))
 
-    if Buttons.Collision((SettingButton), 280, 70, (55,430, 280,70)):
+    if Buttons.Collision((SettingButton), 280, 70, (55,430, 280,70), "images/settings_hover.png", "images/settings_normal.png", 0):
         if event.type == MOUSEBUTTONDOWN :
             SettingsWindow()
 
-#    if Buttons.Collision((AboutButton), 280, 70, (350,430,280,70)): 
-#        if event.type == MOUSEBUTTONUP:
-#            AboutWindow()
-#                
-#    if Buttons.Collision((PlayButton), 260, 140, (100,225,260,140)):
-#        if event.type ==  MOUSEBUTTONUP:
-#            main.main()
-#
-#    if Buttons.Collision((InstructionsButton), 260, 140, (375,225,260,140)):
-#        if event.type == MOUSEBUTTONUP:
-#            InstructionsWindow()     
-#            
-    #print os.path.dirname(os.getcwd())  
+    if Buttons.Collision((AboutButton), 280, 70, (350,430,280,70), "images/about_hover.png","images/about_normal.png", 0): 
+        if event.type == MOUSEBUTTONUP:
+            AboutWindow()
 
+    if Buttons.Collision((InstructionsButton), 260, 140, (375,225,260,140), "images/learn_hover.png","images/learn_normal.png", 0):
+        if event.type == MOUSEBUTTONUP:
+            InstructionsWindow() 
+            
+    if Buttons.Collision((PlayButton), 260, 140, (100,225,260,140),"images/play_hover.png","images/play_normal.png", 0):
+        if event.type ==  MOUSEBUTTONUP:
+            main.main()    
+            
+    #print os.path.dirname(os.getcwd())  
     pygame.display.update()
     pygame.event.clear()
     for event in pygame.event.get():

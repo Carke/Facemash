@@ -14,6 +14,8 @@ for event in pygame.event.get():
 #v = raw_input("Filename: ")
 state = 0
 x = 0
+y = 0
+identifier = 0
 def Quit():
     for event in pygame.event.get():
         if event.type == KEYDOWN and event.key == K_ESCAPE:
@@ -33,30 +35,45 @@ class Buttons(pygame.sprite.Sprite):
         self.image = pygame.image.load(initial).convert_alpha()
         self.hover = pygame.image.load(hover).convert_alpha()
         self.Rect = pygame.Rect((location))
-
+        self.image2 = self.image
 
         self.rect = self.image.get_rect()
         self.rect.x=location[0]
         self.rect.y=location[1]
         pygame.display.get_surface().blit(self.image,self)
-    def Collision(self, length, width, location):
+    def Collision(self, length, width, location, hover, initial, identifier):
         MouseOver()
-        if self.Rect.collidepoint((x1,y1)) :
-            pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
-            pygame.display.get_surface().blit(self.hover,self)
-            global x
-            while x < 3 :
-                length = length*1.01
-                width = width*1.01
-                self.hover = pygame.transform.scale(self.hover, (length, width))
-                pygame.display.get_surface().blit(self.hover, self)
-                pygame.display.update()
-                pygame.time.wait(50)
-                x=x+1
-        elif self.Rect.collidepoint((x1,y1)) == False:
+        global x
+        global y
+        if self.Rect.collidepoint((x1,y1)) == False and identifier == 1:
             x=0
-        Quit()
-        return True
+            self.hover = pygame.image.load(hover).convert_alpha()
+            while y < 3 :
+                    length = length*0.98
+                    width = width*0.98
+                    self.image = pygame.transform.scale(self.image, (length, width))
+                    pygame.display.get_surface().blit(self.image, self)
+                    pygame.display.update()
+                    pygame.time.wait(50)
+                    print y
+                    y=y+1
+            identifier = 0
+        if self.Rect.collidepoint((x1,y1)):
+            identifier = 1
+            if identifier == 1:
+                y = 0
+                pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
+                pygame.display.get_surface().blit(self.hover,self)
+                self.image2 = pygame.image.load(initial).convert_alpha
+                while x < 3 :
+                    length = length*1.01
+                    width = width*1.01
+                    self.hover = pygame.transform.scale(self.hover, (length, width))
+                    pygame.display.get_surface().blit(self.hover, self)
+                    pygame.display.update()
+                    pygame.time.wait(50)
+                    print x
+                    x=x+1
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
         self.hover = pygame.transform.scale(self.hover, (104,56))
