@@ -1,4 +1,4 @@
-import pygame
+import pygame, os
 from pygame.locals import *
 MainMenu = pygame.display.set_mode([700,700])
 AboutMenu = pygame.display.set_mode([500,500])
@@ -11,8 +11,9 @@ for event in pygame.event.get():
         if event.type == MOUSEMOTION:
             x1=event.pos[0] 
             y1=event.pos[1]
-v = raw_input("Filename: ")
+#v = raw_input("Filename: ")
 state = 0
+x = 0
 def Quit():
     for event in pygame.event.get():
         if event.type == KEYDOWN and event.key == K_ESCAPE:
@@ -38,12 +39,24 @@ class Buttons(pygame.sprite.Sprite):
         self.rect.x=location[0]
         self.rect.y=location[1]
         pygame.display.get_surface().blit(self.image,self)
-    def Collision(self):
+    def Collision(self, length, width, location):
         MouseOver()
         if self.Rect.collidepoint((x1,y1)) :
+            pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
             pygame.display.get_surface().blit(self.hover,self)
-            Quit()
-            return True
+            global x
+            while x < 3 :
+                length = length*1.01
+                width = width*1.01
+                self.hover = pygame.transform.scale(self.hover, (length, width))
+                pygame.display.get_surface().blit(self.hover, self)
+                pygame.display.update()
+                pygame.time.wait(50)
+                x=x+1
+        elif self.Rect.collidepoint((x1,y1)) == False:
+            x=0
+        Quit()
+        return True
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
         self.hover = pygame.transform.scale(self.hover, (104,56))
@@ -64,4 +77,4 @@ SettingButton = Buttons((55,430, 280,70),"images/settings_normal.png", "images/s
 InstructionsTitleText = Buttons((0,0,0,0),"images/InstructionsTitle_normal.png","images/InstructionsTitle_normal.png")
 AudioON = Buttons((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
 AudioOFF = Buttons((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
-Image1 = Buttons((0,0,0,0),"C:/Users/Carke/"+v,"C:/Users/Carke/"+v)
+#Image1 = Buttons((0,0,0,0),os.path.dirname(os.getcwd())+v,os.path.dirname(os.getcwd())+v)

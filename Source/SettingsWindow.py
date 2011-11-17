@@ -30,7 +30,7 @@ def SettingsWindow():
         SettingsMenu.blit(AudioText.image, AudioText)
         SettingsMenu.blit(AudioON.image, AudioON)
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
-        SettingsMenu.blit(Image1.image, Image1)
+        #SettingsMenu.blit(Image1.image, Image1)
         if Buttons.Resize(AudioON, (104,56)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
