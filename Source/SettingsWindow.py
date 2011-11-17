@@ -9,11 +9,13 @@ from Buttons import *
 pygame.init()
 pygame.mixer.init()
 MusicVolume = 1
+color = (255,255,255)
 
 def SettingsWindow():
     pygame.display.quit()
     state = 0
     global MusicVolume
+    global v
     while state == 0:
         SettingsMenu = pygame.display.set_mode([500,500])
         SettingsMenu.fill([111,159,225])
@@ -23,27 +25,35 @@ def SettingsWindow():
                 x1=event.pos[0] 
                 y1=event.pos[1]
         SettingsMenu.blit(TitleText.image, TitleText)
-        BackButtonText = pygame.font.Font(None,32).render("Press Escape to go back.", 1, (0,0,0))
-        SettingsMenu.blit(BackButtonText,(100,450))
+        BackButtonText = pygame.font.Font("LOBSTER 1.4.OTF",50).render("Select Your Sticker!", 1, (255,255,255))
+        SettingsMenu.blit(BackButtonText,(60,200))
         SettingsMenu.blit(AudioText.image, AudioText)
         SettingsMenu.blit(AudioON.image, AudioON)
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
-        #SettingsMenu.blit(Image1.image, Image1)
-        if Buttons2.Collision((AudioON)):
+        SettingsMenu.blit(Image1.image, Image1)
+        if Buttons.Resize(AudioON, (104,56)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
                 MusicVolume = 1
         if MusicVolume == 1: 
             SettingsMenu.blit(AudioON.hover, AudioON)
-        if Buttons2.Collision((AudioOFF)):
+        if Buttons.Resize(AudioOFF, (104,56)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(0.0)
                 MusicVolume = 0
         if MusicVolume == 0: 
             SettingsMenu.blit(AudioOFF.hover, AudioOFF)
-        for event in pygame.event.get():
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
-                state = 1
+#        if Buttons2.Collision(Image1):
+#            if event.type == MOUSEBUTTONUP:
+#                image = Image1
+#        if Buttons2.Collision(Image2):
+#            if event.type == MOUSEBUTTONUP:
+#                image = Image2
+#        if Buttons2.Collision(Image3):
+#            if event.type == MOUSEBUTTONUP:
+#                image = Image3
+#        if Buttons.Collision(BackButton):
+#            Quit()
         pygame.event.clear()
             
             

@@ -3,7 +3,7 @@ Created on Oct 30, 2011
 
 @author: Carke
 '''
-import pygame, Buttons, main
+import pygame, Buttons, main, os
 from pygame.locals import *
 from Buttons import *
 from SettingsWindow import SettingsWindow
@@ -35,24 +35,24 @@ while state == 0:
     MainMenu.blit(SettingButton.image,SettingButton) 
     MainMenu.blit(AboutButton.image, AboutButton)
     MainMenu.blit(BackButtonText,(50,520))
-    #Code for Settings Button Mouseover
+
     if Buttons.Collision((SettingButton)):
         if event.type == MOUSEBUTTONDOWN :
             SettingsWindow()
 
-#code for controlling About Button Mouseover
-    if Buttons.Collision(AboutButton): #code for About Menu
+    if Buttons.Collision(AboutButton): 
         if event.type == MOUSEBUTTONUP:
             AboutWindow()
                 
-# Code for Play Button Mouseover
     if Buttons.Collision((PlayButton)):
         if event.type ==  MOUSEBUTTONUP:
             main.main()
-#Code for Instruction Button Mouseover
+
     if Buttons.Collision((InstructionsButton)):
         if event.type == MOUSEBUTTONUP:
-            InstructionsWindow()         
+            InstructionsWindow()     
+            
+    print os.path.dirname(os.getcwd())    
 
     pygame.display.update()
     for event in pygame.event.get():
