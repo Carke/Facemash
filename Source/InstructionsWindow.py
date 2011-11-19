@@ -15,11 +15,14 @@ def InstructionsWindow():
         InstructionsMenu = pygame.display.set_mode([500,500])
         pygame.display.set_caption("Instructions")
         InstructionsMenu.fill([111,159,225])
+        for event in pygame.event.get():
+            if event.type == MOUSEMOTION:
+                x1=event.pos[0] 
+                y1=event.pos[1]
         InstructionsMenu.blit(InstructionsTitleText.image, InstructionsTitleText)
         Buttons.Resize(InstructionsTitleText, (511,141))
-        BackButtonText = pygame.font.Font(None,32).render("Press Escape to go back.", 1, (0,0,0))
-        InstructionsMenu.blit(BackButtonText,(100,450))
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == KEYDOWN and event.key == K_ESCAPE:
+        InstructionsMenu.blit(Back.image, Back)
+        if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png", 0):
+            if event.type == MOUSEBUTTONDOWN:
                 setting = 1
+        pygame.display.update()

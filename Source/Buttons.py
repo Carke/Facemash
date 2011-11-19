@@ -98,4 +98,4 @@ InstructionsTitleText = Buttons((0,0,0,0),"images/InstructionsTitle_normal.png",
 AudioON = Buttons((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
 AudioOFF = Buttons((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
 Upload = Buttons((50,250,104,56), "images/Upload_normal.png", "images/Upload_hover.png")
-#Image1 = Buttons((0,0,0,0),os.path.dirname(os.getcwd())+v,os.path.dirname(os.getcwd())+v)
+Back = Buttons((300,430,195,68), "images/Back_normal.png", "images/Back_hover.png")
