@@ -10,8 +10,9 @@ pygame.init()
 pygame.mixer.init()
 MusicVolume = 1
 color = (255,255,255)
-
+Image1 = Buttons((0,0,0,0), "images/settings_normal.png", "images/settings_hover.png")
 def SettingsWindow():
+    global Image1
     pygame.display.quit()
     state = 0
     global MusicVolume
@@ -30,7 +31,7 @@ def SettingsWindow():
         SettingsMenu.blit(AudioText.image, AudioText)
         SettingsMenu.blit(AudioON.image, AudioON)
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
-        #SettingsMenu.blit(Image1.image, Image1)
+        SettingsMenu.blit(Upload.image, Upload)
         if Buttons.Resize(AudioON, (104,56)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
@@ -54,9 +55,12 @@ def SettingsWindow():
 #                image = Image3
 #        if Buttons.Collision(BackButton):
 #            Quit()
+        if Buttons.Resize(Upload, (104,56)):
+            if event.type == MOUSEBUTTONDOWN :
+                v = raw_input("Filename: ")
+                Image1 = Buttons((0,0,0,0),os.path.dirname(os.getcwd())+v,os.path.dirname(os.getcwd())+v)
         pygame.event.clear()
-            
-            
+        SettingsMenu.blit(Image1.image, Image1)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == KEYDOWN and event.key == K_ESCAPE:

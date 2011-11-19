@@ -45,22 +45,10 @@ class Buttons(pygame.sprite.Sprite):
         MouseOver()
         global x
         global y
-        if self.Rect.collidepoint((x1,y1)) == False and identifier == 1:
-            x=0
-            self.hover = pygame.image.load(hover).convert_alpha()
-            while y < 3 :
-                    length = length*0.98
-                    width = width*0.98
-                    self.image = pygame.transform.scale(self.image, (length, width))
-                    pygame.display.get_surface().blit(self.image, self)
-                    pygame.display.update()
-                    pygame.time.wait(50)
-                    print y
-                    y=y+1
-            identifier = 0
         if self.Rect.collidepoint((x1,y1)):
-            identifier = 1
-            if identifier == 1:
+            self.identifier = identifier
+            self.identifier = 1
+            if self.identifier == 1:
                 y = 0
                 pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
                 pygame.display.get_surface().blit(self.hover,self)
@@ -74,6 +62,21 @@ class Buttons(pygame.sprite.Sprite):
                     pygame.time.wait(50)
                     print x
                     x=x+1
+            return True
+#        if self.Rect.collidepoint((x1,y1)) == False and self.identifier == 1:
+#            print identifier
+#            x=0
+#            self.hover = pygame.image.load(hover).convert_alpha()
+#            while y < 3 :
+#                    length = length*0.98
+#                    width = width*0.98
+#                    self.image = pygame.transform.scale(self.image, (length, width))
+#                    pygame.display.get_surface().blit(self.image, self)
+#                    pygame.display.update()
+#                    pygame.time.wait(50)
+#                    print y
+#                    y=y+1
+#            identifier = 0
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
         self.hover = pygame.transform.scale(self.hover, (104,56))
@@ -94,4 +97,5 @@ SettingButton = Buttons((55,430, 280,70),"images/settings_normal.png", "images/s
 InstructionsTitleText = Buttons((0,0,0,0),"images/InstructionsTitle_normal.png","images/InstructionsTitle_normal.png")
 AudioON = Buttons((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
 AudioOFF = Buttons((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
+Upload = Buttons((50,250,104,56), "images/Upload_normal.png", "images/Upload_hover.png")
 #Image1 = Buttons((0,0,0,0),os.path.dirname(os.getcwd())+v,os.path.dirname(os.getcwd())+v)
