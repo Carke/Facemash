@@ -65,7 +65,7 @@ def SettingsWindow():
         if Buttons.Resize(Upload, (104,104)):
             if event.type == MOUSEBUTTONDOWN :
                 #v = raw_input("Filename: ")
-                filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname("C:")))
+                filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname("C:\Users")))
                 Image1 = Buttons((50,300,104,104),filename,filename)
         if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png", 0):
             if event.type == MOUSEBUTTONDOWN:
