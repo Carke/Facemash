@@ -52,16 +52,15 @@ class Buttons(pygame.sprite.Sprite):
                 y = 0
                 pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
                 pygame.display.get_surface().blit(self.hover,self)
-                self.image2 = pygame.image.load(initial).convert_alpha
-                while x < 3 :
-                    length = length*1.01
-                    width = width*1.01
-                    self.hover = pygame.transform.scale(self.hover, (length, width))
-                    pygame.display.get_surface().blit(self.hover, self)
-                    pygame.display.update()
-                    pygame.time.wait(50)
-                    print x
-                    x=x+1
+#                while x < 3 :
+#                    length = length*1.01
+#                    width = width*1.01
+#                    self.hover = pygame.transform.scale(self.hover, (length, width))
+#                    pygame.display.get_surface().blit(self.hover, self)
+#                    pygame.display.update()
+#                    pygame.time.wait(50)
+#                    print x
+#                    x=x+1
             return True
 #        if self.Rect.collidepoint((x1,y1)) == False and self.identifier == 1:
 #            print identifier
@@ -79,7 +78,7 @@ class Buttons(pygame.sprite.Sprite):
 #            identifier = 0
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
-        self.hover = pygame.transform.scale(self.hover, (104,56))
+        self.hover = pygame.transform.scale(self.hover, dimensions)
         MouseOver()
         if self.Rect.collidepoint((x1,y1)) :
             pygame.display.get_surface().blit(self.hover,self)
@@ -97,5 +96,8 @@ SettingButton = Buttons((55,430, 280,70),"images/settings_normal.png", "images/s
 InstructionsTitleText = Buttons((0,0,0,0),"images/InstructionsTitle_normal.png","images/InstructionsTitle_normal.png")
 AudioON = Buttons((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
 AudioOFF = Buttons((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
-Upload = Buttons((50,250,104,56), "images/Upload_normal.png", "images/Upload_hover.png")
+Upload = Buttons((30,375,130,70), "images/Upload_normal.png", "images/Upload_hover.png")
 Back = Buttons((300,430,195,68), "images/Back_normal.png", "images/Back_hover.png")
+Bear = Buttons((75,250,100,100), "images/bear.png", "images/bear.png ")
+Bow = Buttons((200,250,100,100), "images/bow.png", "images/bow.png ")
+Cake = Buttons((325,250,100,100), "images/cake.png", "images/cake.png ")

@@ -21,8 +21,8 @@ def AboutWindow():
         AboutMenu.blit(AboutTitleText.image, AboutTitleText)
         AboutMenu.blit(Back.image, Back)
         if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png", 0):
-            if event.type == MOUSEBUTTONDOWN:
-                setting = 1
+            if event.type == MOUSEBUTTONUP:
                 pygame.event.clear()
+                setting = 1
                 
         pygame.display.update()

@@ -35,8 +35,9 @@ while state == 0:
     MainMenu.blit(SettingButton.image,SettingButton) 
     MainMenu.blit(AboutButton.image, AboutButton)
     MainMenu.blit(BackButtonText,(50,520))
+    
     if Buttons.Collision((SettingButton), 280, 70, (55,430, 280,70), "images/settings_hover.png", "images/settings_normal.png", 0):
-        if event.type == MOUSEBUTTONDOWN :
+        if event.type == MOUSEBUTTONUP:
             SettingsWindow()
 
     if Buttons.Collision((AboutButton), 280, 70, (350,430,280,70), "images/about_hover.png","images/about_normal.png", 0): 

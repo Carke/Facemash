@@ -13,7 +13,7 @@ pygame.init()
 pygame.mixer.init()
 MusicVolume = 1
 color = (255,255,255)
-Image1 = Buttons((50,300,104,56), "images/blank.png", "images/blank.png")
+Image1 = Buttons((160,350,104,56), "images/blank.png", "images/blank.png")
 root=Tk()
     
 
@@ -31,6 +31,7 @@ def SettingsWindow():
             if event.type == MOUSEMOTION:
                 x1=event.pos[0] 
                 y1=event.pos[1]
+        SettingsMenu.blit(Image1.image, Image1)
         SettingsMenu.blit(TitleText.image, TitleText)
         BackButtonText = pygame.font.Font("LOBSTER 1.4.OTF",50).render("Select Your Sticker!", 1, (255,255,255))
         SettingsMenu.blit(BackButtonText,(60,200))
@@ -39,6 +40,9 @@ def SettingsWindow():
         SettingsMenu.blit(AudioOFF.image, AudioOFF)
         SettingsMenu.blit(Upload.image, Upload)
         SettingsMenu.blit(Back.image, Back)
+        SettingsMenu.blit(Bow.image, Bow)
+        SettingsMenu.blit(Bear.image, Bear)
+        SettingsMenu.blit(Cake.image, Cake)
         if Buttons.Resize(AudioON, (104,56)):
             if event.type ==  MOUSEBUTTONUP:
                 pygame.mixer.music.set_volume(1.0)
@@ -62,15 +66,24 @@ def SettingsWindow():
 #                image = Image3
 #        if Buttons.Collision(BackButton):
 #            Quit()
-        if Buttons.Resize(Upload, (104,104)):
-            if event.type == MOUSEBUTTONDOWN :
+        if Buttons.Resize(Upload, (130,70)):
+            if event.type == MOUSEBUTTONUP :
                 #v = raw_input("Filename: ")
                 filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname("C:\Users")))
-                Image1 = Buttons((50,300,104,104),filename,filename)
+                Image1 = Buttons((175,350,104,104),filename,filename)
+                v = Image1
         if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png", 0):
-            if event.type == MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONUP:
                 state = 1
+        if Buttons.Resize(Bow, (100,100)):
+            if event.type == MOUSEBUTTONUP:
+                v = Bow
+        if Buttons.Resize(Bear, (100,100)):
+            if event.type == MOUSEBUTTONUP:
+                v = Bear
+        if Buttons.Resize(Cake, (100,100)):
+            if event.type == MOUSEBUTTONUP:
+                v = Cake
         pygame.event.clear()
-        SettingsMenu.blit(Image1.image, Image1)
         Buttons.Resize(Image1, (104,104))
         pygame.display.update()
