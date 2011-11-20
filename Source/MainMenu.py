@@ -46,7 +46,6 @@ while state == 0:
     if Buttons.Collision((AboutButton), 280, 70, (350,430,280,70), "images/about_hover.png","images/about_normal.png"): 
         if event.type == MOUSEBUTTONUP:
             AboutWindow()
-            pygame.event.clear()
 
     if Buttons.Collision((InstructionsButton), 260, 140, (375,225,260,140), "images/learn_hover.png","images/learn_normal.png"):
         if event.type == MOUSEBUTTONUP:
@@ -54,7 +53,7 @@ while state == 0:
             
     if Buttons.Collision((PlayButton), 260, 140, (100,225,260,140),"images/play_hover.png","images/play_normal.png"):
         if event.type ==  MOUSEBUTTONUP:
-            main.main()    
+            main.play()    
             
     pygame.display.update()
     pygame.event.clear()
