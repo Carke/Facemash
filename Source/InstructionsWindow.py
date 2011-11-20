@@ -22,7 +22,7 @@ def InstructionsWindow():
         InstructionsMenu.blit(InstructionsTitleText.image, InstructionsTitleText)
         Buttons.Resize(InstructionsTitleText, (511,141))
         InstructionsMenu.blit(Back.image, Back)
-        if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png", 0):
-            if event.type == MOUSEBUTTONDOWN:
+        if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png"):
+            if event.type == MOUSEBUTTONUP:
                 setting = 1
         pygame.display.update()

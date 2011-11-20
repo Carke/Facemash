@@ -1,3 +1,4 @@
+#imports and inits
 import pygame, os
 from pygame.locals import *
 MainMenu = pygame.display.set_mode([700,700])
@@ -11,15 +12,16 @@ for event in pygame.event.get():
         if event.type == MOUSEMOTION:
             x1=event.pos[0] 
             y1=event.pos[1]
-#v = raw_input("Filename: ")
+#defining default variables
 state = 0
 x = 0
 y = 0
-identifier = 0
+#exits the window or game
 def Quit():
     for event in pygame.event.get():
         if event.type == KEYDOWN and event.key == K_ESCAPE:
             state = 1
+#detects mouseover motion
 def MouseOver():
     global x1
     global y1
@@ -27,55 +29,39 @@ def MouseOver():
         if event.type == MOUSEMOTION:
             x1=event.pos[0] 
             y1=event.pos[1]
-        
+#buttons class that all objects are a part of
 class Buttons(pygame.sprite.Sprite):
     def __init__(self, location, initial, hover):
         pygame.sprite.Sprite.__init__(self)
-
+        # defines initial image and hover state with transparencies
         self.image = pygame.image.load(initial).convert_alpha()
         self.hover = pygame.image.load(hover).convert_alpha()
+        # defines Rect attributes for sprite
         self.Rect = pygame.Rect((location))
-        self.image2 = self.image
 
         self.rect = self.image.get_rect()
         self.rect.x=location[0]
         self.rect.y=location[1]
         pygame.display.get_surface().blit(self.image,self)
-    def Collision(self, length, width, location, hover, initial, identifier):
+    #method for handling collision
+    def Collision(self, length, width, location, hover, initial):
         MouseOver()
         global x
-        global y
         if self.Rect.collidepoint((x1,y1)):
-            self.identifier = identifier
-            self.identifier = 1
-            if self.identifier == 1:
-                y = 0
-                pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
-                pygame.display.get_surface().blit(self.hover,self)
-#                while x < 3 :
-#                    length = length*1.01
-#                    width = width*1.01
-#                    self.hover = pygame.transform.scale(self.hover, (length, width))
-#                    pygame.display.get_surface().blit(self.hover, self)
-#                    pygame.display.update()
-#                    pygame.time.wait(50)
-#                    print x
-#                    x=x+1
+            pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
+            pygame.display.get_surface().blit(self.hover,self)
+#            while x < 3 :
+#                length = length*1.01
+#                width = width*1.01
+#                self.hover = pygame.transform.scale(self.hover, (length, width))
+#                pygame.display.get_surface().blit(self.hover, self)
+#                pygame.display.update()
+#                pygame.time.wait(50)
+#                x=x+1
             return True
-#        if self.Rect.collidepoint((x1,y1)) == False and self.identifier == 1:
-#            print identifier
-#            x=0
-#            self.hover = pygame.image.load(hover).convert_alpha()
-#            while y < 3 :
-#                    length = length*0.98
-#                    width = width*0.98
-#                    self.image = pygame.transform.scale(self.image, (length, width))
-#                    pygame.display.get_surface().blit(self.image, self)
-#                    pygame.display.update()
-#                    pygame.time.wait(50)
-#                    print y
-#                    y=y+1
-#            identifier = 0
+        if self.Rect.collidepoint((x1,y1)) == False:
+            self.hover = pygame.image.load(hover).convert_alpha()
+    #method for objects that need to be resized and their collisions
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
         self.hover = pygame.transform.scale(self.hover, dimensions)
@@ -84,7 +70,7 @@ class Buttons(pygame.sprite.Sprite):
             pygame.display.get_surface().blit(self.hover,self)
             Quit()
             return True
-        
+#initial state of all uploaded objects with the exception of user uploaded ones
 TitleText = Buttons((100,0,0,0),"images/SettingsTitle_normal.png", "images/SettingsTitle_normal.png")
 AudioText = Buttons((25,140,0,0),"images/audio_normal.png", "images/audio_normal.png")
 Logo = Buttons((50,25,0,0),"images/logo_normal.png", "images/logo_hover.png")
