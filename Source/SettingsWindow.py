@@ -9,24 +9,23 @@ from pygame.locals import *
 from Buttons import *
 from Tkinter import *
 from tkFileDialog import askopenfilename
-root = Tk()
 pygame.init()
 pygame.mixer.init()
 MusicVolume = 1
-color = (255,255,255)
-Image1 = Buttons((160,350,104,56), "images/blank.png", "images/blank.png")
+Image1 = Buttons((160,340,104,56), "images/blank.png", "images/blank.png")
 root=Tk()
-    
+root.withdraw()
+RewardImage = Bear
 
 def SettingsWindow():
     global Image1
     pygame.display.quit()
     state = 0
     global MusicVolume
-    global v
+    global RewardImage
     while state == 0:
-        SettingsMenu = pygame.display.set_mode([500,500])
-        SettingsMenu.fill([111,159,225])
+        SettingsMenu = pygame.display.set_mode([500,550])
+        SettingsMenu.fill([41,89,214])
         pygame.display.set_caption("Settings")
         for event in pygame.event.get():
             if event.type == MOUSEMOTION:
@@ -35,7 +34,7 @@ def SettingsWindow():
         #drawing all the initial images and Text
         SettingsMenu.blit(Image1.image, Image1)
         SettingsMenu.blit(TitleText.image, TitleText)
-        BackButtonText = pygame.font.Font("LOBSTER 1.4.OTF",50).render("Select Your Sticker!", 1, (255,255,255))
+        BackButtonText = pygame.font.Font("Assets/Fonts/Lobster 1.4.otf",50).render("Select Your Sticker!", 1, (255,255,255))
         SettingsMenu.blit(BackButtonText,(60,200))
         SettingsMenu.blit(AudioText.image, AudioText)
         SettingsMenu.blit(AudioON.image, AudioON)
@@ -63,10 +62,12 @@ def SettingsWindow():
         if Buttons.Resize(Upload, (130,70)):
             if event.type == MOUSEBUTTONUP :
                 # uses Tkinter to determine what file types are accepted and where to look initially, can go to any directory
-                filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname("C:\Users")))
-                Image1 = Buttons((175,350,104,104),filename,filename)
-                v = Image1
-        if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png"):
+                filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname(os.getcwd())))
+                if filename == "":
+                    filename = "images/blank.png"
+                Image1 = Buttons((175,340,104,104),filename,filename)
+                RewardImage = Image1
+        if Buttons.Collision(Back):
             if event.type == MOUSEBUTTONUP:
                 state = 1
         # code for the various default reward stickers

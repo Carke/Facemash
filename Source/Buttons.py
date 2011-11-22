@@ -2,9 +2,9 @@
 import pygame, os
 from pygame.locals import *
 MainMenu = pygame.display.set_mode([700,700])
-AboutMenu = pygame.display.set_mode([500,500])
-InstructionsMenu = pygame.display.set_mode([500,500])
-SettingsMenu = pygame.display.set_mode([500,500])
+AboutMenu = pygame.display.set_mode([500,550])
+InstructionsMenu = pygame.display.set_mode([500,550])
+SettingsMenu = pygame.display.set_mode([500,550])
 pygame.init()
 x1=0
 y1=0
@@ -34,6 +34,10 @@ class Buttons(pygame.sprite.Sprite):
     def __init__(self, location, initial, hover):
         pygame.sprite.Sprite.__init__(self)
         # defines initial image and hover state with transparencies
+        try:
+            self.image = pygame.image.load(initial).convert_alpha()
+        except:
+            self.image = pygame.image.load("images/blank.png").convert_alpha()
         self.image = pygame.image.load(initial).convert_alpha()
         self.hover = pygame.image.load(hover).convert_alpha()
         # defines Rect attributes for sprite
@@ -44,11 +48,10 @@ class Buttons(pygame.sprite.Sprite):
         self.rect.y=location[1]
         pygame.display.get_surface().blit(self.image,self)
     #method for handling collision
-    def Collision(self, length, width, location, hover, initial):
+    def Collision(self):
         MouseOver()
         global x
         if self.Rect.collidepoint((x1,y1)):
-            pygame.draw.rect(pygame.display.get_surface(), (111,159,225), location)
             pygame.display.get_surface().blit(self.hover,self)
 #            while x < 3 :
 #                length = length*1.01
@@ -59,8 +62,6 @@ class Buttons(pygame.sprite.Sprite):
 #                pygame.time.wait(50)
 #                x=x+1
             return True
-        if self.Rect.collidepoint((x1,y1)) == False:
-            self.hover = pygame.image.load(hover).convert_alpha()
     #method for objects that need to be resized and their collisions
     def Resize(self, dimensions):
         self.image = pygame.transform.scale(self.image, dimensions)
@@ -83,7 +84,8 @@ InstructionsTitleText = Buttons((0,0,0,0),"images/InstructionsTitle_normal.png",
 AudioON = Buttons((240,150,104,56),"images/ON_normal.png", "images/ON_hover.png")
 AudioOFF = Buttons((350,150,104,56),"images/OFF_normal.png", "images/OFF_hover.png")
 Upload = Buttons((30,375,130,70), "images/Upload_normal.png", "images/Upload_hover.png")
-Back = Buttons((300,430,195,68), "images/Back_normal.png", "images/Back_hover.png")
+Back = Buttons((25,500,195,35), "images/Back_normal.png", "images/Back_hover.png")
 Bear = Buttons((75,250,100,100), "images/bear.png", "images/bear.png ")
 Bow = Buttons((200,250,100,100), "images/bow.png", "images/bow.png ")
 Cake = Buttons((325,250,100,100), "images/cake.png", "images/cake.png ")
+Exit = Buttons((275,500,130,70), "images/Exit_normal.png", "images/Exit_hover.png")

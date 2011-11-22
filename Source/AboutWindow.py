@@ -11,16 +11,16 @@ def AboutWindow():
     pygame.display.quit()
     setting = 0
     while setting == 0:
-        AboutMenu = pygame.display.set_mode([500,500])
+        AboutMenu = pygame.display.set_mode([500,550])
         pygame.display.set_caption("About")
-        AboutMenu.fill([111,159,225])
+        AboutMenu.fill([41,89,214])
         for event in pygame.event.get():
             if event.type == MOUSEMOTION:
                 x1=event.pos[0] 
                 y1=event.pos[1]
         AboutMenu.blit(AboutTitleText.image, AboutTitleText)
         AboutMenu.blit(Back.image, Back)
-        if Buttons.Collision(Back, 195, 68, (300,450,195,68), "images/Back_hover.png", "images/Back_normal.png"):
+        if Buttons.Collision(Back):
             if event.type == MOUSEBUTTONUP:
                 pygame.event.clear()
                 setting = 1
