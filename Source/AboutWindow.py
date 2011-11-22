@@ -20,6 +20,7 @@ def AboutWindow():
                 y1=event.pos[1]
         AboutMenu.blit(AboutTitleText.image, AboutTitleText)
         AboutMenu.blit(Back.image, Back)
+        AboutMenu.blit(AboutText.image, AboutText)
         if Buttons.Collision(Back):
             if event.type == MOUSEBUTTONUP:
                 pygame.event.clear()

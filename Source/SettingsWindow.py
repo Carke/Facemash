@@ -4,21 +4,22 @@ Created on Oct 31, 2011
 @author: Carke
 '''
 # imports and initializers
-import pygame, os
+import pygame, os, config
 from pygame.locals import *
 from Buttons import *
 from Tkinter import *
 from tkFileDialog import askopenfilename
+from config import *
 pygame.init()
 pygame.mixer.init()
 MusicVolume = 1
-Image1 = Buttons((160,340,104,56), "images/blank.png", "images/blank.png")
+Image = Buttons((160,340,104,56), "images/blank.png", "images/blank.png")
+filename = "images/Exit_hover.png"
 root=Tk()
 root.withdraw()
-RewardImage = Bear
 
 def SettingsWindow():
-    global Image1
+    global Image
     pygame.display.quit()
     state = 0
     global MusicVolume
@@ -32,7 +33,7 @@ def SettingsWindow():
                 x1=event.pos[0] 
                 y1=event.pos[1]
         #drawing all the initial images and Text
-        SettingsMenu.blit(Image1.image, Image1)
+        SettingsMenu.blit(Image.image, Image)
         SettingsMenu.blit(TitleText.image, TitleText)
         BackButtonText = pygame.font.Font("Assets/Fonts/Lobster 1.4.otf",50).render("Select Your Sticker!", 1, (255,255,255))
         SettingsMenu.blit(BackButtonText,(60,200))
@@ -65,21 +66,22 @@ def SettingsWindow():
                 filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname(os.getcwd())))
                 if filename == "":
                     filename = "images/blank.png"
-                Image1 = Buttons((175,340,104,104),filename,filename)
-                RewardImage = Image1
+                Image = Buttons((175,340,104,104),filename,filename)
+                config.sticker = "custom"
+                config.file = filename
         if Buttons.Collision(Back):
             if event.type == MOUSEBUTTONUP:
                 state = 1
         # code for the various default reward stickers
         if Buttons.Resize(Bow, (100,100)):
             if event.type == MOUSEBUTTONUP:
-                RewardImage = Bow
+                config.sticker = "bow"
         if Buttons.Resize(Bear, (100,100)):
             if event.type == MOUSEBUTTONUP:
-                RewardImage = Bear
+                config.sticker = "bear"
         if Buttons.Resize(Cake, (100,100)):
             if event.type == MOUSEBUTTONUP:
-                RewardImage = Cake
-        Buttons.Resize(Image1, (104,104))
+                config.sticker = "cake"
+        Buttons.Resize(Image, (104,104))
         pygame.event.clear()
         pygame.display.update()
