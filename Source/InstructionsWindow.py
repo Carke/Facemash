@@ -12,7 +12,7 @@ def InstructionsWindow():
     pygame.display.quit()
     setting = 0
     while setting == 0:
-        InstructionsMenu = pygame.display.set_mode([500,550])
+        InstructionsMenu = pygame.display.set_mode([500,570])
         pygame.display.set_caption("Instructions")
         InstructionsMenu.fill([41,89,214])
         for event in pygame.event.get():

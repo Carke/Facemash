@@ -11,7 +11,7 @@ def AboutWindow():
     pygame.display.quit()
     setting = 0
     while setting == 0:
-        AboutMenu = pygame.display.set_mode([500,550])
+        AboutMenu = pygame.display.set_mode([500,570])
         pygame.display.set_caption("About")
         AboutMenu.fill([41,89,214])
         for event in pygame.event.get():

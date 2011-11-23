@@ -25,7 +25,7 @@ def SettingsWindow():
     global MusicVolume
     global RewardImage
     while state == 0:
-        SettingsMenu = pygame.display.set_mode([500,550])
+        SettingsMenu = pygame.display.set_mode([500,570])
         SettingsMenu.fill([41,89,214])
         pygame.display.set_caption("Settings")
         for event in pygame.event.get():
