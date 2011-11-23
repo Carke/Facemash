@@ -64,11 +64,14 @@ def SettingsWindow():
             if event.type == MOUSEBUTTONUP :
                 # uses Tkinter to determine what file types are accepted and where to look initially, can go to any directory
                 filename = askopenfilename(filetypes=[("All Files","*"),("jpeg","*.jpg")], initialdir=(os.path.dirname(os.getcwd())))
+                Image = ""
                 if filename == "":
                     filename = "images/blank.png"
+                    config.sticker = "bear"
+                else:
+                    config.sticker = "custom"
+                    config.file = filename
                 Image = Buttons((175,340,104,104),filename,filename)
-                config.sticker = "custom"
-                config.file = filename
         if Buttons.Collision(Back):
             if event.type == MOUSEBUTTONUP:
                 state = 1
